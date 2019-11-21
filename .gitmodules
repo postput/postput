@@ -1,0 +1,9 @@
+[submodule "api"]
+	path = api
+	url = git@github.com:postput/api.git
+[submodule "admin-backend"]
+	path = admin-backend
+	url = git@github.com:postput/admin-backend.git
+[submodule "admin-frontend"]
+	path = admin-frontend
+	url = git@github.com:postput/admin-frontend.git
