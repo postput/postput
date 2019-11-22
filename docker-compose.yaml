@@ -24,6 +24,7 @@ services:
       POSTGRESQL_DB: postput
       POSTGRESQL_PORT: 5432
       SEQUELIZE_FORCE_SYNC: "true"
+    command: ["./wait.sh", "postput_db:5432", "--", "npm", "start"]
     ports:
       - '2000:3000'
   postput_admin_backend:
@@ -38,6 +39,7 @@ services:
       POSTGRESQL_DB: postput
       POSTGRESQL_PORT: 5432
       SEQUELIZE_FORCE_SYNC: "true"
+    command: ["./wait.sh", "postput_db:5432", "--", "npm", "start"]
     ports:
       - '2001:3000'
   postput_admin_frontend:
