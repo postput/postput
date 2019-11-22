@@ -1,4 +1,7 @@
-
+<img alt="Docker Cloud Build Status" src="https://img.shields.io/docker/cloud/build/postput/api">
+<img alt="GitHub top language" src="https://img.shields.io/github/languages/top/postput/api">
+<img alt="GitHub language count" src="https://img.shields.io/github/languages/count/postput/api">
+<img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/postput/api">
   
 <a href="https://www.postput.com"><img src="https://cdn-storage.speaky.com/image5/4b34b792-ca51-41d3-8ae9-1c2a21d914a0.png" title="Postput" alt="Postput"></a>    
     
