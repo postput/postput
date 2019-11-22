@@ -117,7 +117,7 @@ Operations are applied one after another. Keep in mind that **order may matters*
  - [Filesystem](#filesystem)
  - [Webfolder](#webfolder)
  - [Proxy](#proxy)
- - [All s3 compliant storages](#al- s3-compliant-storages)
+ - [All s3 compliant storages](#all-s3-compliant-storages)
           
           
 ## Amazon (S3)
