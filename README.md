@@ -41,16 +41,22 @@ curl -F 'data=@postput-docker-compose.yaml' http://localhost:2000/my_memory_file
 ###  2. Download the file you've just uploaded
 
 ```shell
-curl http://localhost:1999/my_memory_files/docker-compose.yaml
+curl http://localhost:2000/my_memory_files/docker-compose.yaml
 ```
 
-### 3. Try with any kind of files
+### 3. Upload an image by providing its URL
 
 ```shell
-curl -F 'data=@your-picture.jpg' http://localhost:2000/my_memory_files
+curl -X POST http://localhost:2000/my_memory_files/\?url=https://i2-prod.mirror.co.uk/incoming/article14334083.ece/ALTERNATES/s810/3_Beautiful-girl-with-a-gentle-smile.jpg\&name-override=my-image.jpg
 ```
 
-### 4. Create [your custom storage](#supported-storage-provider) at: http://localhost:2002
+### 4. Resize, blur, rotate, round and optimize this image on the fly. Operations are applied in the order they appear in the request.
+
+```shell
+curl http://localhost:2000/my_memory_files/my-image.jpg\?resize=300,300&blur=5&rotate=90&mask=elipse&format=webp
+```
+
+### 5. Create [your custom storage](#supported-storage-provider) at: http://localhost:2002
 
 # Operations Available
 - [Resize image](#resize)
@@ -59,7 +65,7 @@ curl -F 'data=@your-picture.jpg' http://localhost:2000/my_memory_files
 - [Mask image](#mask)
 - [Format image](#format)
 
-Operations are applied one after another. Keep in mind that **order may matters** dependeing on which operations you do!
+Operations are applied one after another. Keep in mind that **order may matters** depending on which operations you do!
 
 
 <table>
@@ -109,18 +115,18 @@ Operations are applied one after another. Keep in mind that **order may matters*
 # Supported Storage Provider    
  ### See [storage reference]([https://raw.githubusercontent.com/postput/api/master/storage-reference.json](https://raw.githubusercontent.com/postput/api/master/docker-compose.yaml))
  
-- [Amazon S3](#amazon-s3) Amazon S3
- - [Google cloud storage (GCS)](#google-cloud-storage-gcs)   
-- [Spaces (DigitalOcean)](#spaces-digitalocean)
- - [Openstack](#openstack) 
-- [Azure](#azure)
- - [Scaleway](#scaleway)
- - [Backblaze](#backblaze)
- - [In memory](#in-memory)
- - [Filesystem](#filesystem)
- - [Webfolder](#webfolder)
- - [Proxy](#proxy)
- - [All s3 compliant storages](#all-s3-compliant-storages)
+    - [Amazon S3](#amazon-s3) Amazon S3
+    - [Google cloud storage (GCS)](#google-cloud-storage-gcs)   
+    - [Spaces (DigitalOcean)](#spaces-digitalocean)
+    - [Openstack](#openstack) 
+    - [Azure](#azure)
+    - [Backblaze](#backblaze)
+    - [Scaleway](#scaleway)
+    - [In memory](#in-memory)
+    - [Filesystem](#filesystem)
+    - [Webfolder](#webfolder)
+    - [Proxy](#proxy)
+    - [All s3 compliant storages](#all-s3-compliant-storages)
           
           
 ## Amazon (S3)
@@ -196,8 +202,46 @@ Operations are applied one after another. Keep in mind that **order may matters*
 ```
 
 ## Azure
-
+```json
+{
+        "custom": {
+          "storageAccount": "my-storage-account",
+          "storageAccessKey": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx==",
+          "container": "xxxxxxxxx"
+        },
+        "allowUpload": true,
+        "urls": ["http://localhost:2000/", "https://www.my-other-domain.com"]
+      }
+```
 ## Backblaze  
+
+```json
+ {
+        "custom": {
+          "applicationKeyId": "qsd5f46qs54fd654q6sdf46q5s",
+          "applicationKey": "fq6sd5f65q4sg654sf6g54sfd65g4s6",
+          "bucketName": "mybucketname",
+          "bucketId": "sqd6f56sqd4f65s4df654sq6fd4"
+        },
+        "allowUpload": true,
+        "urls": ["http://localhost:2000/", "https://www.my-other-domain.com"]
+      }
+```
+
+## Scaleway  
+
+```json
+{  
+  "custom": {  
+  "endpoint": "s3.fr-par.scw.cloud",  
+  "bucket": "mybucket",  
+  "accessKeyId": "XXXXXXXXXXXXXXXXXXXXX",  
+  "secretAccessKey": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"  
+  },  
+  "allowUpload": true,  
+  "urls": ["http://localhost:2000/"]  
+}
+```
 
 ## In memory  
  Allows you to store your file in memory. All files stores will be lost upon restart. It's mostly usefull for testing and demo purpose  
@@ -245,20 +289,7 @@ Absolute path
 }
 ```
 
-## Scaleway  
 
-```json
-{  
-  "custom": {  
-  "endpoint": "s3.fr-par.scw.cloud",  
-  "bucket": "mybucket",  
-  "accessKeyId": "XXXXXXXXXXXXXXXXXXXXX",  
-  "secretAccessKey": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"  
-  },  
-  "allowUpload": true,  
-  "urls": ["http://localhost:2000/"]  
-}
-```
 
 ## Webfolder  
 
@@ -316,7 +347,6 @@ Postput can integrate with every type of s3 storage provider. Wise readers may h
 Clone this git repo with its dependencies.
 ```shell
 git clone --recursive git@github.com:postput/postput.git
-or
 git clone --recursive https://github.com/postput/postput.git
 ```
 
@@ -492,9 +522,6 @@ The file to modify is located at : [https://raw.githubusercontent.com/postput/ad
         </tr>
     </tbody>
 </table>
-
-# Deploy it on Kubernetes
-
    
 # How to
 
@@ -502,7 +529,7 @@ The file to modify is located at : [https://raw.githubusercontent.com/postput/ad
 
 ### With fixtures (Recommended)
 
-Postput API is designed to sync every data it finds in the [data/storage](https://github.com/postput/api/tree/master/data/storage) directory with the database every time it starts.
+Postput API is designed to sync every json file it finds in the [data/storage](https://github.com/postput/api/tree/master/data/storage) directory with the database every time it starts.
 
 This is the preferable method if you plan to use postput on production because you'll have consistent storage info upon restart even if you decide to modify/reset your postgresql instance. 
 
@@ -540,7 +567,7 @@ Use a Helm chart  [available soon]
 # FAQ
 
 ### My files are already stored on amazon S3. Do I have to migrate them if I want to use postput? 
-No, postput is not a storage in itself. The only thing you have to do is to tell postput where is your bucket by [creating an S3 storage provider](#how-do-i-create-my-custom-storage-provider)
+No, postput is not a storage in itself. The only thing you have to do is to tell postput where is your bucket by [creating an S3 storage provider](#how-do-i-create-my-custom-storage-provider) and [provide the right config for amazon s3](#amazon-s3)
 
 
 # Roadmap
@@ -551,14 +578,14 @@ By end of November 2019:
 
 
 By end of December 2019:
--  Implement Webhooks capabilities
-- Face detection ( [face-api?]([https://github.com/justadudewhohacks/face-api.js/](https://github.com/justadudewhohacks/face-api.js/))  [opencv?](#[https://github.com/peterbraden/node-opencv](https://github.com/peterbraden/node-opencv)))
+-   Implement Webhooks capabilities
+-   Face detection ( [face-api?]([https://github.com/justadudewhohacks/face-api.js/](https://github.com/justadudewhohacks/face-api.js/))  [opencv?](#[https://github.com/peterbraden/node-opencv](https://github.com/peterbraden/node-opencv)))
 
 
 
 # Credits
 
 Most operations ([resize](#resize), [rotate](#rotate), [blur](#blur), [mask](#mask)...) are done by the [sharp library]([https://github.com/lovell/sharp](https://github.com/lovell/sharp)). 
-Cloud storage integration is done with the help of [pkgcloud]([https://github.com/pkgcloud/pkgcloud] (https://github.com/pkgcloud/pkgcloud)) and  [aws-s3]([https://github.com/aws/aws-sdk-js](https://github.com/aws/aws-sdk-js)).
+Cloud storage integration is done with the help of [pkgcloud]([https://github.com/pkgcloud/pkgcloud] (https://github.com/pkgcloud/pkgcloud)), [aws-s3]([https://github.com/aws/aws-sdk-js](https://github.com/aws/aws-sdk-js)) and [backblaze-b2](https://www.npmjs.com/package/backblaze-b2).
 For the specific memory storage, I use [memfs](#[https://github.com/streamich/memfs](https://github.com/streamich/memfs))
 [Sequelize](#[https://github.com/sequelize/sequelize](https://github.com/sequelize/sequelize)) helps me with database communication
