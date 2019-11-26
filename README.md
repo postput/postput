@@ -562,7 +562,7 @@ Simply access the [admin frontend]([https://github.com/postput/admin-frontend](h
 ## How do I deploy it on production?
 
 ### On Kubernetes With Helm (Recommended)
-A Helm chart will soon be available in the [incubator](https://github.com/helm/charts/tree/master/incubator). Hav a look at the [pull request](https://github.com/helm/charts/pull/19158)
+A Helm chart will soon be available in the [incubator](https://github.com/helm/charts/tree/master/incubator). Have a look at the [pull request](https://github.com/helm/charts/pull/19158)
 Unfortunately, the process to get it integrated may be quite long so, until then, I will integrate charts directly into github repositories under the [`chart`](https://github.com/postput/api/tree/master/chart) directory.
 
 #### Install the API
@@ -571,7 +571,7 @@ git clone --recursive git@github.com:postput/api.git
 cd api/chart
 helm install . --name=my-release
 ```
-
+#### [Helm api documentation](https://github.com/postput/api/tree/master/chart)
 # FAQ
 
 ### My files are already stored on amazon S3. Do I have to migrate them if I want to use postput? 
