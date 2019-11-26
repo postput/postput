@@ -2,8 +2,9 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/postput/api)
 ![GitHub language count](https://img.shields.io/github/languages/count/postput/api)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/postput/api)
-  
-<a href="https://www.postput.com"><img src="https://cdn-storage.speaky.com/image5/4b34b792-ca51-41d3-8ae9-1c2a21d914a0.png" title="Postput" alt="Postput"></a>    
+![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability-percentage/postput/api)
+
+<img src="https://cdn-storage.speaky.com/image5/4b34b792-ca51-41d3-8ae9-1c2a21d914a0.png" title="Postput" alt="Postput"> 
     
 <!-- [![Postput](https://cdn-storage.speaky.com/image5/4b34b792-ca51-41d3-8ae9-1c2a21d914a0.png)](https://www.postput.com) -->    
     
