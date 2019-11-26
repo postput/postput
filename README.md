@@ -561,9 +561,16 @@ Simply access the [admin frontend]([https://github.com/postput/admin-frontend](h
 
 ## How do I deploy it on production?
 
-### On Kubernetes 
-#### With Helm (Recommended)
-Use a Helm chart  [available soon]
+### On Kubernetes With Helm (Recommended)
+A Helm chart will soon be available in the [incubator](https://github.com/helm/charts/tree/master/incubator). Hav a look at the [pull request](https://github.com/helm/charts/pull/19158)
+Unfortunately, the process to get it integrated may be quite long so, until then, I will integrate charts directly into github repositories under the [`chart`](https://github.com/postput/api/tree/master/chart) directory.
+
+#### Install the API
+```shell
+git clone --recursive git@github.com:postput/api.git
+cd api/chart
+helm install . --name=my-release
+```
 
 # FAQ
 
@@ -575,11 +582,12 @@ No, postput is not a storage in itself. The only thing you have to do is to tell
 
 By end of November 2019:
 
-- Implement Helm chart for Kubernetes cluster
+- Implement Helm chart for Kubernetes cluster: Have a look at : 
 
 
 By end of December 2019:
 -   Implement Webhooks capabilities
+-   Implement Tests
 -   Face detection ( [face-api?]([https://github.com/justadudewhohacks/face-api.js/](https://github.com/justadudewhohacks/face-api.js/))  [opencv?](#[https://github.com/peterbraden/node-opencv](https://github.com/peterbraden/node-opencv)))
 
 
