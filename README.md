@@ -113,7 +113,7 @@ Operations are applied one after another. Keep in mind that **order may matters*
 </table>
 
 # Supported Storage Provider    
- ### See [storage reference](https://raw.githubusercontent.com/postput/api/master/docker-compose.yaml)
+ ### See [storage reference](https://github.com/postput/api/blob/a56e5a92c2addd7a092c5f2c743ab72ff17697c5/data/storage/custom/custom.json.dist)
  
 - [Amazon S3](#amazon-s3) Amazon S3
 - [Google cloud storage (GCS)](#google-cloud-storage-gcs)   
