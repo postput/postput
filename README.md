@@ -115,18 +115,18 @@ Operations are applied one after another. Keep in mind that **order may matters*
 # Supported Storage Provider    
  ### See [storage reference]([https://raw.githubusercontent.com/postput/api/master/storage-reference.json](https://raw.githubusercontent.com/postput/api/master/docker-compose.yaml))
  
-    - [Amazon S3](#amazon-s3) Amazon S3
-    - [Google cloud storage (GCS)](#google-cloud-storage-gcs)   
-    - [Spaces (DigitalOcean)](#spaces-digitalocean)
-    - [Openstack](#openstack) 
-    - [Azure](#azure)
-    - [Backblaze](#backblaze)
-    - [Scaleway](#scaleway)
-    - [In memory](#in-memory)
-    - [Filesystem](#filesystem)
-    - [Webfolder](#webfolder)
-    - [Proxy](#proxy)
-    - [All s3 compliant storages](#all-s3-compliant-storages)
+- [Amazon S3](#amazon-s3) Amazon S3
+- [Google cloud storage (GCS)](#google-cloud-storage-gcs)   
+- [Spaces (DigitalOcean)](#spaces-digitalocean)
+- [Openstack](#openstack) 
+- [Azure](#azure)
+- [Backblaze](#backblaze)
+- [Scaleway](#scaleway)
+- [In memory](#in-memory)
+- [Filesystem](#filesystem)
+- [Webfolder](#webfolder)
+- [Proxy](#proxy)
+- [All s3 compliant storages](#all-s3-compliant-storages)
           
           
 ## Amazon (S3)
