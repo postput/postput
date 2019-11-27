@@ -3,6 +3,7 @@
 ![GitHub language count](https://img.shields.io/github/languages/count/postput/api)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/postput/api)
 ![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability-percentage/postput/api)
+![Code Climate coverage](https://img.shields.io/codeclimate/coverage/postput/api)
 
 <img src="https://cdn-storage.speaky.com/image5/4b34b792-ca51-41d3-8ae9-1c2a21d914a0.png" title="Postput" alt="Postput"> 
     
@@ -582,7 +583,7 @@ No, postput is not a storage in itself. The only thing you have to do is to tell
 
 By end of November 2019:
 
-- Implement Helm chart for Kubernetes cluster: Have a look at : 
+- Implement Helm chart for Kubernetes cluster: Have a look at [the pull request](https://github.com/helm/charts/pull/19158)
 
 
 By end of December 2019:
