@@ -1,9 +1,13 @@
 ![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/postput/api)
+![Docker Pulls](https://img.shields.io/docker/pulls/postput/api)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/postput/api)
 ![GitHub top language](https://img.shields.io/github/languages/top/postput/api)
 ![GitHub language count](https://img.shields.io/github/languages/count/postput/api)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/postput/api)
 ![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability-percentage/postput/api)
 ![Code Climate coverage](https://img.shields.io/codeclimate/coverage/postput/api)
+![Code Climate technical debt](https://img.shields.io/codeclimate/tech-debt/postput/api)
+![GitHub](https://img.shields.io/github/license/postput/postput)
 
 <img src="https://cdn-storage.speaky.com/image5/4b34b792-ca51-41d3-8ae9-1c2a21d914a0.png" title="Postput" alt="Postput"> 
     
@@ -588,7 +592,7 @@ By end of November 2019:
 
 By end of December 2019:
 -   Implement Webhooks capabilities
--   Implement Tests
+-   Increase test coverage
 -   Face detection ( [face-api?]([https://github.com/justadudewhohacks/face-api.js/](https://github.com/justadudewhohacks/face-api.js/))  [opencv?](#[https://github.com/peterbraden/node-opencv](https://github.com/peterbraden/node-opencv)))
 
 
