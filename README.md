@@ -24,7 +24,7 @@
     
 > Upload, download and perform operations on the fly on your files   
 
-Postput is a microservice that sits between your file storage and your end-users.     
+Postput is a microservice that sits between your object storage and your users.     
 Its primary function is to [perform various operations on your files](#operations-available).     
 It can also be used to simplify the way you download/upload files with [various storage providers](#supported-storage-provider).    
   

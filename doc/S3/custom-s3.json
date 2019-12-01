@@ -1,0 +1,24 @@
+[
+  {
+    "model": "Storage",
+    "data": {
+      "name": "my_custom_s3_files",
+      "isDefault": false,
+      "uuid": "33e59e84-cfd3-4c21-b296-b7a7d7378b84",
+      "typeId": 1,
+      "config": {
+        "custom": {
+          "keyId": "AKXXXXXXXXXXXXXXXXXX",
+          "key": "XCKlXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+          "container": "mycontainer",
+          "region": "us-east-1"
+        },
+        "allowUpload": true,
+        "urls": ["http://localhost:2000/"]
+      },
+      "data": {}
+    }
+  }
+]
+
+
