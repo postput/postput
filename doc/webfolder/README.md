@@ -3,11 +3,11 @@
 ## Integrate an S3 bucket in with Postput
 
 * Create it with config files
-Copy/paste the [`custom.json` ]() config file into the [`data/storage/custom`]() directory, then change its values accordingly.
+Copy/paste the [`custom-s3.json`](https://raw.githubusercontent.com/postput/postput/master/doc/S3/custom-s3.json) config file into the [`data/storage/custom`](https://github.com/postput/api/tree/master/data/storage/custom) directory, then change its values accordingly.
 
 * Create it with the admin
-
-Access http://localhost:2002
+Alternatively, you can create a storage via the postput admin.
+if you launch the postput stack with docker-compose, the admin should be accessible at: http://localhost:2002
 
 * Create it with postgresql
 
