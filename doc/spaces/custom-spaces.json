@@ -1,0 +1,22 @@
+[
+  /*------------   SPACES CONFIGURATION    ------------------*/
+  {
+    "model": "Storage",
+    "data": {
+      "name": "my_spaces_files",
+      "uuid": "c2ba4b53-41fa-483f-9f79-e8bc8a66dd10",
+      "typeId": 9,
+      "config": {
+        "custom": {
+          "endpoint": "fra1.digitaloceanspaces.com",
+          "bucket": "testpostput",
+          "accessKeyId": "xxxxxxxxxxxxxxxxx",
+          "secretAccessKey": "sdg564s6fg546sd5f4g65sdf4g654sdfgdsfg"
+        },
+        "allowUpload": true,
+        "urls": ["http://localhost:2000/", "https://www.my-other-domain.com"]
+      },
+      "data": {}
+    }
+  }
+]

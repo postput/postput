@@ -128,7 +128,7 @@ Operations are applied one after another. Keep in mind that **order may matters*
 # Supported Storage Provider    
  ### See [storage reference](https://github.com/postput/api/blob/a56e5a92c2addd7a092c5f2c743ab72ff17697c5/data/storage/custom/custom.json.dist)
  
-- [Amazon S3](#amazon-s3) Amazon S3
+- [Amazon S3](doc/s3) Amazon S3
 - [Google cloud storage (GCS)](#google-cloud-storage-gcs)   
 - [Spaces (DigitalOcean)](#spaces-digitalocean)
 - [Openstack](#openstack) 

@@ -1,0 +1,24 @@
+[
+  /*------------   AMAZON S3 CONFIGURATION    ------------------*/
+  {
+    "model": "Storage",
+    "data": {
+      "name": "my_amazon_s3_files",
+      "uuid": "c2ba4b53-41fa-483f-9f79-e8bc8a66dd86",
+      "typeId": 4,
+      "config": {
+        "custom": {
+          "keyId": "AAAAAAAAAAAAAAAAAAA",
+          "key": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+          "container": "my-container",
+          "region": "us-east-1"
+        },
+        "allowUpload": true,
+        "urls": ["http://localhost:2000/", "https://www.my-other-domain.com"]
+      },
+      "data": {}
+    }
+  }
+]
+
+

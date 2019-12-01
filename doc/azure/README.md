@@ -1,9 +1,9 @@
 # Azure storage reference
 
-## Integrate an Azure container in with Postput
+## Integrate an Azure container with Postput
 
 ### Create it with config files
-Copy/paste the [`custom-azure.json` ](custom-azure.json) config file into the [`data/storage/custom`](../../api/data/storage/custom) directory, then change its values accordingly.
+Copy/paste the [`custom-azure.json` ](custom-azure.json) config file into the [`data/storage/custom`](https://github.com/postput/api/tree/master/data/storage/custom) directory, then change secret values accordingly.
 
 ### Create it with the admin
 

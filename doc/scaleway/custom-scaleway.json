@@ -1,0 +1,22 @@
+[
+  /*------------   SCALEWAY CONFIGURATION    ------------------*/
+  {
+    "model": "Storage",
+    "data": {
+      "name": "my_scaleway_files",
+      "uuid": "56ee590f-ac82-4413-8747-736ec63814e8",
+      "typeId": 10,
+      "config": {
+        "custom": {
+          "endpoint": "s3.fr-par.scw.cloud",
+          "bucket": "testpostput",
+          "accessKeyId": "xxxxxxxxxxxxxxxxxxxxxxx",
+          "secretAccessKey": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+        },
+        "allowUpload": true,
+        "urls": ["http://localhost:2000/", "https://www.my-other-domain.com"]
+      },
+      "data": {}
+    }
+  }
+]
