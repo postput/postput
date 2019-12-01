@@ -26,7 +26,34 @@
 
 Postput abstract the complexity of [storage providers](#supported-storage-provider) to help you upload, download and [operate](#operations-available) on your files.     
 
-# Why using Postput?
+# TL;DR
+  
+### 1. Launch the full stack: 
+```shell
+wget https://raw.githubusercontent.com/postput/postput/master/docker-compose.yaml -O postput-docker-compose.yaml && \
+docker-compose  -f postput-docker-compose.yaml up
+```
+
+### 2. Upload any image by providing its URL
+
+```shell
+curl -X POST http://localhost:2000/my_memory_files/\?url=https://i2-prod.mirror.co.uk/incoming/article14334083.ece/ALTERNATES/s810/3_Beautiful-girl-with-a-gentle-smile.jpg\&name-override=my-image.jpg
+```
+
+### 3. Resize, blur, rotate, round and optimize this image on the fly. Operations are applied in the order they appear in the request.
+
+```shell
+curl http://localhost:2000/my_memory_files/my-image.jpg\?resize=300,300\&blur=5\&rotate=90\&mask=elipse\&format=webp
+```
+
+### 4. Create [your custom storage](#supported-storage-provider) at: http://localhost:2002
+
+# Why using postput?
+
+Postput simplify object storage by providing a simple unified API tu upload/download and operate on files.
+
+ 
+# Who is it for?
 
 - You already have an S3 bucket where you store a lot of profile pictures/Avatars. You want to resize and optimize the format of those profile pictures to reduce your bandwith usage and accelerate download speed.
 > [Integrate your bucket with postput](doc/s3) and apply the [resize](#resize) and [webp format](#format) filter on the query.
@@ -57,27 +84,7 @@ Postput abstract the complexity of [storage providers](#supported-storage-provid
   ![Recordit GIF](https://cdn-storage.speaky.com/image2/5e8e5b0d-e92c-4243-bc4f-1ce62fd1c4d1.gif)    
  
  
- # TL;DR
-  
-### 1. Launch the full stack: 
-```shell
-wget https://raw.githubusercontent.com/postput/postput/master/docker-compose.yaml -O postput-docker-compose.yaml && \
-docker-compose  -f postput-docker-compose.yaml up
-```
 
-### 2. Upload any image by providing its URL
-
-```shell
-curl -X POST http://localhost:2000/my_memory_files/\?url=https://i2-prod.mirror.co.uk/incoming/article14334083.ece/ALTERNATES/s810/3_Beautiful-girl-with-a-gentle-smile.jpg\&name-override=my-image.jpg
-```
-
-### 3. Resize, blur, rotate, round and optimize this image on the fly. Operations are applied in the order they appear in the request.
-
-```shell
-curl http://localhost:2000/my_memory_files/my-image.jpg\?resize=300,300\&blur=5\&rotate=90\&mask=elipse\&format=webp
-```
-
-### 4. Create [your custom storage](#supported-storage-provider) at: http://localhost:2002
 
 
 # Operations Available
@@ -157,7 +164,7 @@ cd postput
 docker-compose up
 ```
 
-# Run it locally
+# Debug
 
 You may want to run each service independently in your computer to be able to see what's happenning under the hood.
 Good news: each microservice can be started independently.
