@@ -2,19 +2,17 @@
   {
     "model": "Storage",
     "data": {
-      "name": "my_custom_s3_files",
-      "isDefault": false,
-      "uuid": "33e59e84-cfd3-4c21-b296-b7a7d7378b84",
-      "typeId": 1,
+      "name": "my_azure_files",
+      "uuid": "c2ba4b53-41fa-483f-9f79-e8bc8a66dd06",
+      "typeId": 6,
       "config": {
         "custom": {
-          "keyId": "AKXXXXXXXXXXXXXXXXXX",
-          "key": "XCKlXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-          "container": "mycontainer",
-          "region": "us-east-1"
+          "storageAccount": "my-storage-account",
+          "storageAccessKey": "qsgfd5g6sd5hg468gfd4h65fgn1gf6n5s6gfh4s6d4hsd5fb31xvcb6s6fgh45fgsh==",
+          "container": "mycontainer"
         },
         "allowUpload": true,
-        "urls": ["http://localhost:2000/"]
+        "urls": ["http://localhost:2000/", "https://www.my-other-domain.com"]
       },
       "data": {}
     }
