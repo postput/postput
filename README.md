@@ -29,7 +29,7 @@ Its primary function is to [perform various operations on your files](#operation
 It can also be used to simplify the way you download/upload files with [various storage providers](#supported-storage-provider).    
   
    # Table of Contents 
- - [Operations Available](#operations-available) - [Install](#install) - [Run it locally](#run-it-locally) - [How to](#how-to) - [Roadmap](#roadmap)- [Credits](#credits) 
+ - [Operations Available](#operations-available) - [Supported Storage Provider](#supported-storage-provider) - [Install](#install) - [Run it locally](#run-it-locally) - [How to](#how-to) - [Roadmap](#roadmap)- [Credits](#credits) 
     
  ---    
   
@@ -128,7 +128,7 @@ Operations are applied one after another. Keep in mind that **order may matters*
 # Supported Storage Provider    
  ### See [storage reference](https://github.com/postput/api/blob/a56e5a92c2addd7a092c5f2c743ab72ff17697c5/data/storage/custom/custom.json.dist)
  
-- [Amazon S3](doc/s3) Amazon S3
+- [Amazon S3](doc/s3)
 - [Google cloud storage (GCS)](doc/gcs)   
 - [Spaces (DigitalOcean)](doc/spaces)
 - [Openstack](/doc/openstack) 
@@ -141,10 +141,6 @@ Operations are applied one after another. Keep in mind that **order may matters*
 - [Proxy](doc/proxy)
 - [All s3 compliant storages](#all-s3-compliant-storages)
   
-## All s3 compliant storages
-Postput can integrate with every kind of S3 storage provider. Have a look at the [scaleway](doc/scaleway) or [Spaces](doc/spaces) config
-
-
 # Install
 
 Clone this git repo with its dependencies.
