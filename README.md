@@ -1,6 +1,5 @@
 ![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/postput/api)
 ![Docker Pulls](https://img.shields.io/docker/pulls/postput/api)
-![GitHub All Releases](https://img.shields.io/github/downloads/postput/api/total)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/postput/api)
 ![GitHub top language](https://img.shields.io/github/languages/top/postput/api)
 ![GitHub language count](https://img.shields.io/github/languages/count/postput/api)
