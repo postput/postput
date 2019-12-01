@@ -20,12 +20,14 @@
     
 <!-- [![Postput](https://cdn-storage.speaky.com/image5/4b34b792-ca51-41d3-8ae9-1c2a21d914a0.png)](https://www.postput.com) -->    
     
- # Postput: Cloud native storage operator     
+ # Postput: An object storage to rule them all!     
     
-> An object storage to rule them all!
-Postput is a simple webserver that can serve any kind of files, even if they are already hosted. 
+>Postput is a simple webserver that can serve any kind of files, wherever they are. 
 It abstracts the complexity of [storage providers](#supported-storage-provider) to help you upload, download and [operate](#operations-available) on your files.     
 
+# Demo
+![Recordit GIF](https://cdn-storage.speaky.com/image2/5e8e5b0d-e92c-4243-bc4f-1ce62fd1c4d1.gif)    
+  
 # TL;DR
   
 ### 1. Launch the full stack: 
@@ -94,14 +96,7 @@ Postput simplify object storage by providing a unified API tu upload, download a
 - [Roadmap](#roadmap)
 - [Credits](#credits)       
  ---    
-  
-  # Demo
-  ![Recordit GIF](https://cdn-storage.speaky.com/image2/5e8e5b0d-e92c-4243-bc4f-1ce62fd1c4d1.gif)    
  
- 
-
-
-
 # Operations Available
 - [Resize image](#resize)
 - [Rotate image](#rotate)
@@ -165,78 +160,57 @@ Operations are applied one after another. Keep in mind that **order may matters*
 - [Proxy](doc/proxy)
 - [All s3 compliant storages](#all-s3-compliant-storages)
   
-# Install
+# Install and usage
+Before running and using Postput, you'll have to tell him what kind of storage to use. It is very easy to do so.
+Postput is designed to sync every json file it finds in the [data/storage](https://github.com/postput/api/tree/master/data/storage) directory with the database every time it starts.
+This is the preferable method if you plan to use postput on production because it ensure a consistent storage info upon restart even if you decide to modify/reset your postgresql instance. 
+You'll have to create a json file that looks like [this one](https://github.com/postput/api/blob/master/data/storage/custom/custom.json.dist) in the [data/storage](https://github.com/postput/api/tree/master/data/storage/custom) directory
 
-Clone this git repo with its dependencies.
+
+## Locally
+
+### Clone this git repo with its dependencies.
 ```shell
 git clone --recursive git@github.com:postput/postput.git
 git clone --recursive https://github.com/postput/postput.git
 ```
 
-Start the whole stack (API + admin backend and frontend) 
+### Start the whole stack : API + backend + frontend 
 ```shell
 cd postput
 docker-compose up
 ```
 
-# Debug
+By default, a memory storage and a filesystem storage are created for you.
 
-You may want to run each service independently in your computer to be able to see what's happenning under the hood.
-Good news: each microservice can be started independently.
+## On production
 
-### Preriquisites:
-- [node.js](#[https://nodejs.org/en/](https://nodejs.org/en/)) > 8
--  Postgresql database up and running. You can spawn one very easily thanks to the docker-compose file provided at the root of this repository.
-
-
-```shell
-docker-compose up postput_db
+### With docker
+You can create a docker image based on the [api image]([https://hub.docker.com/repository/docker/postput/api](https://hub.docker.com/repository/docker/postput/api)) (Image built with [this docker file]([https://github.com/postput/api/blob/master/Dockerfile](https://github.com/postput/api/blob/master/Dockerfile)))
+Don't forget to include your own storage info and to delet those you don't want anymore:
+```docker
+FROM postput/api
+COPY my-storage.json ./data/storage/custom
+RUN rm ./data/storage/default.json
 ```
 
-## Launch the API and the admin backend
-Once started, you can start the API and the admin-backend. 
-You can customize database connexion parameters with environment variables.
-
-### Start the API:
-
+### With Kubernetes: Helm
+A Helm chart will soon be available in the [incubator](https://github.com/helm/charts/tree/master/incubator). Have a look at the [pull request](https://github.com/helm/charts/pull/19158)
+Unfortunately, the process to get it integrated may be quite long so, until then, I will integrate charts directly into github repositories under the [`chart`](https://github.com/postput/api/tree/master/chart) directory.
+Read the [Chart config](https://github.com/postput/api/tree/master/chart) for more info
 ```shell
-cd api
-npm i
-export POSTGRESQL_PORT=5555
-export LISTEN_PORT=1999
-npm start
+git clone git@github.com:postput/api.git
+cd chart
+helm install . --name=my-release
 ```
 
-### Start the admin-backend
-
-```shell
-cd admin-backend
-npm i
-export POSTGRESQL_PORT=5555
-export LISTEN_PORT=1998
-npm start
-```
-
-## Launch the admin frontend
-
-Once the admin backend is started, you can start the admin frontend that allows you to create, read, update and delete storages (CRUD). The frontend is designed to communicate with the backend so you must configure it so that it will hit the admin-backend on the port it is listening : [1998](#start-the-admin-backend) in this case.
-
-admin-frontend
-```shell
-cd admin-frontend
-npm i
-ng serve -c debug
-```
-The debug configuration is a profile that will make the frontend hit the port 1998 so it will just work out of the box.
-Unfortunately, angular does not play well with environment variable so if you want/have to modify this port, you'll have to modify the debug profile or create another one. 
-The file to modify is located at : [https://raw.githubusercontent.com/postput/admin-frontend/master/src/environments/environment.prod.ts](https://raw.githubusercontent.com/postput/admin-frontend/master/src/environments/environment.debug.ts)
 
 
 # Configuration
 
-## Api configuration
+The API can be easily configured using environment variables and storage specific config.
+
 ### Global configuration
-#### Environment variable 
 
 <table>
     <thead>
@@ -345,78 +319,79 @@ The file to modify is located at : [https://raw.githubusercontent.com/postput/ad
         </tr>
     </tbody>
 </table>
-   
-# How to
 
-## How do I create my custom storage provider?
+# Debug
 
-### With fixtures (Recommended)
+You may want to run each service independently in your computer to be able to see what's happening under the hood.
+Good news: each microservice can be started independently.
 
-Postput API is designed to sync every json file it finds in the [data/storage](https://github.com/postput/api/tree/master/data/storage) directory with the database every time it starts.
+### Preriquisites:
+* [node.js](#[https://nodejs.org/en/](https://nodejs.org/en/)) >= 10
+*  Postgresql database up and running. You can spawn one very easily thanks to the docker-compose file provided at the root of this repository.
 
-This is the preferable method if you plan to use postput on production because you'll have consistent storage info upon restart even if you decide to modify/reset your postgresql instance. 
-
-You'll have to create a json file that follow the [storage reference]([https://github.com/postput/api/blob/master/package.json](https://github.com/postput/api/blob/master/storage-reference.json)) in the [data/storage]([https://github.com/postput/api/tree/master/data/storage](https://github.com/postput/api/tree/master/data/storage)) directory
-
-
-The method you use to create that file is left to you. 
-I recommend to create that file using the [secret/mountpath]([https://kubernetes.io/docs/concepts/configuration/secret/#use-cases](https://kubernetes.io/docs/concepts/configuration/secret/#use-cases)) feature if you use [kubernetes]([https://kubernetes.io/](https://kubernetes.io/)).
-
-If you don't use kubernetes, you can still create a docker image based on the [api image]([https://hub.docker.com/repository/docker/postput/api](https://hub.docker.com/repository/docker/postput/api)) (Image built with [this docker file]([https://github.com/postput/api/blob/master/Dockerfile](https://github.com/postput/api/blob/master/Dockerfile)))
-
-
-Dockefile
-
-```docker
-FROM postput/api
-COPY my-storage.json ./data/storage/
-```
-
-### With Postgresql
-The fastest way to create a storage if you're familiar with SQL.
-You can use any database tool that supports Postgresql like [DBeaver]([https://dbeaver.io/](https://dbeaver.io/)) or [navicat]([https://www.navicat.com/](https://www.navicat.com/))
-There is only 2 tables : Storage and StorageType. the only table that you want to modify is Storage.
-
-### With the admin dashboard
-The easiest way to create your storage.
-Simply access the [admin frontend]([https://github.com/postput/admin-frontend](https://github.com/postput/admin-frontend)). If you started the project using the docker-compose of the [TL;DR](#tldr) section, it is located at [localhost:2002](http://localhost:2002)
-
-## How do I deploy it on production?
-
-### On Kubernetes With Helm (Recommended)
-A Helm chart will soon be available in the [incubator](https://github.com/helm/charts/tree/master/incubator). Have a look at the [pull request](https://github.com/helm/charts/pull/19158)
-Unfortunately, the process to get it integrated may be quite long so, until then, I will integrate charts directly into github repositories under the [`chart`](https://github.com/postput/api/tree/master/chart) directory.
-
-#### Install the API
 ```shell
-git clone --recursive git@github.com:postput/api.git
-cd api/chart
-helm install . --name=my-release
+docker-compose up postput_db
 ```
-#### [Helm api documentation](https://github.com/postput/api/tree/master/chart)
-# FAQ
 
-### My files are already stored on amazon S3. Do I have to migrate them if I want to use postput? 
-No, postput is not a storage in itself. The only thing you have to do is to tell postput where is your bucket by [creating an S3 storage provider](#how-do-i-create-my-custom-storage-provider) and [provide the right config for amazon s3](#amazon-s3)
+## Launch the API and the admin backend
+Once started, you can start the API and the admin-backend. 
+You can customize database connexion parameters with environment variables.
+
+### Start the API:
+
+```shell
+cd api
+npm i
+export POSTGRESQL_PORT=5555
+export LISTEN_PORT=1999
+npm start
+```
+
+### Start the admin-backend
+
+```shell
+cd admin-backend
+npm i
+export POSTGRESQL_PORT=5555
+export LISTEN_PORT=1998
+npm start
+```
+
+## Launch the admin frontend
+
+Once the admin backend is started, you can start the admin frontend that allows you to create, read, update and delete storages (CRUD). The frontend is designed to communicate with the backend so you must configure it so that it will hit the admin-backend on the port it is listening : [1998](#start-the-admin-backend) in this case.
+
+admin-frontend
+```shell
+cd admin-frontend
+npm i
+ng serve -c debug
+```
+The debug configuration is a profile that will make the frontend hit the port 1998 so it will just work out of the box.
+Unfortunately, angular does not play well with environment variable so if you want/have to modify this port, you'll have to modify the debug profile or create another one. 
+The file to modify is located at : [https://raw.githubusercontent.com/postput/admin-frontend/master/src/environments/environment.prod.ts](https://raw.githubusercontent.com/postput/admin-frontend/master/src/environments/environment.debug.ts)
 
 
 # Roadmap
 
 By end of November 2019:
 
-- Implement Helm chart for Kubernetes cluster: Have a look at [the pull request](https://github.com/helm/charts/pull/19158)
+* Implement Helm chart for Kubernetes cluster: Have a look at [the pull request](https://github.com/helm/charts/pull/19158)
 
 
 By end of December 2019:
--   Implement Webhooks capabilities
--   Increase test coverage
--   Face detection ( [face-api?]([https://github.com/justadudewhohacks/face-api.js/](https://github.com/justadudewhohacks/face-api.js/))  [opencv?](#[https://github.com/peterbraden/node-opencv](https://github.com/peterbraden/node-opencv)))
+*   Implement Webhooks capabilities
+*   Increase test coverage
+*   Face detection ( [face-api?]([https://github.com/justadudewhohacks/face-api.js/](https://github.com/justadudewhohacks/face-api.js/))  [opencv?](#[https://github.com/peterbraden/node-opencv](https://github.com/peterbraden/node-opencv)))
 
 
 
 # Credits
 
 Most operations ([resize](#resize), [rotate](#rotate), [blur](#blur), [mask](#mask)...) are done by the [sharp library]([https://github.com/lovell/sharp](https://github.com/lovell/sharp)). 
+
 Cloud storage integration is done with the help of [pkgcloud]([https://github.com/pkgcloud/pkgcloud] (https://github.com/pkgcloud/pkgcloud)), [aws-s3]([https://github.com/aws/aws-sdk-js](https://github.com/aws/aws-sdk-js)) and [backblaze-b2](https://www.npmjs.com/package/backblaze-b2).
+
 For the specific memory storage, I use [memfs](#[https://github.com/streamich/memfs](https://github.com/streamich/memfs))
+
 [Sequelize](#[https://github.com/sequelize/sequelize](https://github.com/sequelize/sequelize)) helps me with database communication

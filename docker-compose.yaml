@@ -24,6 +24,8 @@ services:
       POSTGRESQL_DB: postput
       POSTGRESQL_PORT: 5432
       SEQUELIZE_FORCE_SYNC: "true"
+    volumes:
+      - ./api/data:/opt/app/data
     command: ["./wait.sh", "postput_db:5432", "--", "npm", "start"]
     ports:
       - '2000:3000'
