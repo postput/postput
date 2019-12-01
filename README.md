@@ -43,7 +43,9 @@ curl -X POST http://localhost:2000/my_memory_files/\?url=https://i2-prod.mirror.
 ```
 
 ### 3. Resize, blur, rotate, round and optimize this image on the fly. Operations are applied in the order they appear in the request.
-copy/paste the following URL in your favourite webbrowser:
+
+Copy/paste this URL in your favourite webbrowser:
+
 ```shell 
 http://localhost:2000/my_memory_files/my-image.jpg?resize=300,300&blur=5&rotate=90&mask=elipse&format=webp 
 ```
