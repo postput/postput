@@ -22,9 +22,9 @@
     
  # Postput: Cloud native storage operator     
     
-> Upload, download and perform operations on the fly on your files   
-
-Postput abstract the complexity of [storage providers](#supported-storage-provider) to help you upload, download and [operate](#operations-available) on your files.     
+> An object storage to rule them all!
+Postput is a simple webserver that can serve any kind of files, even if they are already hosted. 
+It abstracts the complexity of [storage providers](#supported-storage-provider) to help you upload, download and [operate](#operations-available) on your files.     
 
 # TL;DR
   
@@ -48,12 +48,27 @@ curl http://localhost:2000/my_memory_files/my-image.jpg\?resize=300,300\&blur=5\
 
 ### 4. Create [your custom storage](#supported-storage-provider) at: http://localhost:2002
 
-# Why using postput?
+# Why this project?
 
-Postput simplify object storage by providing a simple unified API tu upload/download and operate on files.
+This project is the result of some observations:
+
+* It is difficult to choose what storage provider to use for your assets and user-generated files like profile pictures.
+S3 bucket? GCS? Backblaze? Scaleway? Openstack? Nowadays a lot of solutions exists to host your files. What if you don't want to take your decision now and just want to code what matters to you now?
+
+* It is difficult to switch from one storage provider to another.
+When dealing with large amount of requests, object storage can rapidly become very costly on some providers. 
+Unfortunately, switching from one provider to another includes rewriting some code and effort to match the new API.
+
+* Applying operations on files are too expensive.
+[Lambda functions](https://aws.amazon.com/fr/blogs/compute/resize-images-on-the-fly-with-amazon-s3-aws-lambda-and-amazon-api-gateway/), [Imagekit](https://imagekit.io), [Imgx](https://www.imgix.com/), [Cloudinary](https://cloudinary.com/)... All these options works well but are too expensive and some of them only support hosting images. 
+Even if they use performant GPU technologies and out of the box CDN support, pricing is still hard to swallow when you know that more than 95% of your asset traffic can be cached by a free CDN (like cloudflare). 
+You may want to spend your money on a wiser solution instead.
+
+
+Postput simplify object storage by providing a unified API tu upload, download and operate functions on files. It is a free product that you can install on your own computer for development and on production later on when you're ready!
 
  
-# Who is it for?
+## Use cases
 
 - You already have an S3 bucket where you store a lot of profile pictures/Avatars. You want to resize and optimize the format of those profile pictures to reduce your bandwith usage and accelerate download speed.
 > [Integrate your bucket with postput](doc/s3) and apply the [resize](#resize) and [webp format](#format) filter on the query.
@@ -61,10 +76,10 @@ Postput simplify object storage by providing a simple unified API tu upload/down
 - You know about serverless solutions like Lambda but these solutions turn out to be too costly.
 > Postput can integrate with a lot of storage providers and will only cost you the price of the server lease. 
 
-- You start a new project and don't want to waste time building your own HTTP server for storing your profile pictures. You're still not sure if you're going to use [s3](doc/s3), [GCS](doc/gcs) or [backblaze](doc/backblaze) as a storage provider.
+- You start a new project and don't want to waste time building your own HTTP server for storing your profile pictures. You're still not sure if you're going to use [s3](doc/s3), [GCS](doc/gcs), [backblaze](doc/backblaze) or your own [filesystem](doc/filesystem) as a storage provider.
 
-> When still in development, create a [filesystem storage](doc/filesystem) storage. Later on, when you'll know what storage provider to use, integrate it with postput. You're client side code won't change because all storage providers follow the same API.
-> You can even keep those 2 storages provider active at the same time. You can actually create as many storage providers as you like.
+> When still in development, create a [filesystem storage](doc/filesystem) storage. Later on, when you'll know what storage provider to use, integrate it with postput. Your code won't change because all storage providers follow the same API.
+> You can even keep those 2 storage providers active at the same time. You can actually create as many storage providers as you like with Postput.
 
 - You're happy with the storage provider that you use. You're not confident about storing your super secret credentials with this (amazing) third party solution but you still want to find a quick solution for resizing and optimizing your files.
 > Create a [proxy](doc/proxy) or [webfolder](doc/webfolder) storage with postput. No credentials are needed for those kind of storage but your files need to be publicly available.
