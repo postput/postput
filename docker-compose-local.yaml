@@ -16,7 +16,7 @@ services:
     image: postput/api:latest
     restart: always
     depends_on:
-     - postput_db
+      - postput_db
     environment:
       POSTGRESQL_HOST: postput_db
       POSTGRESQL_PASSWORD: postput
@@ -24,6 +24,8 @@ services:
       POSTGRESQL_DB: postput
       POSTGRESQL_PORT: 5432
       SEQUELIZE_FORCE_SYNC: "true"
+    volumes:
+      - ./api/data:/opt/app/data
     command: ["./wait.sh", "postput_db:5432", "--", "npm", "start"]
     ports:
       - '2000:3000'
@@ -31,7 +33,7 @@ services:
     image: postput/admin-backend:latest
     restart: always
     depends_on:
-     - postput_db
+      - postput_db
     environment:
       POSTGRESQL_HOST: postput_db
       POSTGRESQL_PASSWORD: postput
