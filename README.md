@@ -91,8 +91,7 @@ Postput simplify object storage by providing a unified API tu upload, download a
 - [Operations Available](#operations-available) 
 - [Supported Storage Provider](#supported-storage-provider) 
 - [Install](#install) 
-- [Run it locally](#run-it-locally) 
-- [How to](#how-to) 
+- [Configuration](#configuration)
 - [Roadmap](#roadmap)
 - [Credits](#credits)       
  ---    
@@ -160,7 +159,7 @@ Operations are applied one after another. Keep in mind that **order may matters*
 - [Proxy](doc/proxy)
 - [All s3 compliant storages](#all-s3-compliant-storages)
   
-# Install and usage
+# Install
 Before running and using Postput, you'll have to tell him what kind of storage to use. It is very easy to do so.
 Postput is designed to sync every json file it finds in the [data/storage](https://github.com/postput/api/tree/master/data/storage) directory with the database every time it starts.
 This is the preferable method if you plan to use postput on production because it ensure a consistent storage info upon restart even if you decide to modify/reset your postgresql instance. 
