@@ -161,8 +161,11 @@ Operations are applied one after another. Keep in mind that **order may matters*
   
 # Install
 Before running and using Postput, you'll have to tell him what kind of storage to use. It is very easy to do so.
+
 Postput is designed to sync every json file it finds in the [data/storage](https://github.com/postput/api/tree/master/data/storage) directory with the database every time it starts.
+
 This is the preferable method if you plan to use postput on production because it ensure a consistent storage info upon restart even if you decide to modify/reset your postgresql instance. 
+
 You'll have to create a json file that looks like [this one](https://github.com/postput/api/blob/master/data/storage/custom/custom.json.dist) in the [data/storage](https://github.com/postput/api/tree/master/data/storage/custom) directory
 
 
