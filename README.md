@@ -52,17 +52,17 @@ curl http://localhost:2000/my_memory_files/my-image.jpg\?resize=300,300\&blur=5\
 
 This project is the result of some observations:
 
-* It is difficult to choose what storage provider to use for your assets and user-generated files like profile pictures.
-S3 bucket? GCS? Backblaze? Scaleway? Openstack? Nowadays a lot of solutions exists to host your files. What if you don't want to take your decision now and just want to code what matters to you now?
-
-* It is difficult to switch from one storage provider to another.
-When dealing with large amount of requests, object storage can rapidly become very costly on some providers. 
-Unfortunately, switching from one provider to another includes rewriting some code and effort to match the new API.
-
-* Applying operations on files are too expensive.
-[Lambda functions](https://aws.amazon.com/fr/blogs/compute/resize-images-on-the-fly-with-amazon-s3-aws-lambda-and-amazon-api-gateway/), [Imagekit](https://imagekit.io), [Imgx](https://www.imgix.com/), [Cloudinary](https://cloudinary.com/)... All these options works well but are too expensive and some of them only support hosting images. 
-Even if they use performant GPU technologies and out of the box CDN support, pricing is still hard to swallow when you know that more than 95% of your asset traffic can be cached by a free CDN (like cloudflare). 
-You may want to spend your money on a wiser solution instead.
+* It is difficult to choose what storage provider to use for your assets and user-generated files like profile pictures.  
+> S3 bucket? GCS? Backblaze? Scaleway? Openstack? Nowadays a lot of solutions exists to host your files. What if you don't want to take your decision now and just want to code what matters to you now?  
+  
+* It is difficult to switch from one storage provider to another.  
+>When dealing with large amount of requests, object storage can rapidly become very costly on some providers.   
+Unfortunately, switching from one provider to another includes rewriting some code and effort to match the new API.  
+  
+* Applying operations on files are too expensive.  
+>[Lambda functions](https://aws.amazon.com/fr/blogs/compute/resize-images-on-the-fly-with-amazon-s3-aws-lambda-and-amazon-api-gateway/), [Imagekit](https://imagekit.io), [Imgx](https://www.imgix.com/), [Cloudinary](https://cloudinary.com/)... All these options works well but are too expensive and some of them only support hosting images.   
+Even if they use performant GPU technologies and out of the box CDN support, pricing is still hard to swallow when you know that more than 95% of your asset traffic can be cached by a free CDN (like cloudflare).   
+You may want to spend your money on a wiser solution instead.  
 
 
 Postput simplify object storage by providing a unified API tu upload, download and operate functions on files. It is a free product that you can install on your own computer for development and on production later on when you're ready!
