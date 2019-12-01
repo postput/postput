@@ -24,13 +24,33 @@
     
 > Upload, download and perform operations on the fly on your files   
 
-Postput is a microservice that sits between your object storage and your users.     
-Its primary function is to [perform various operations on your files](#operations-available).     
-It can also be used to simplify the way you download/upload files with [various storage providers](#supported-storage-provider).    
-  
-   # Table of Contents 
- - [Operations Available](#operations-available) - [Supported Storage Provider](#supported-storage-provider) - [Install](#install) - [Run it locally](#run-it-locally) - [How to](#how-to) - [Roadmap](#roadmap)- [Credits](#credits) 
-    
+Postput abstract the complexity of [storage providers](#supported-storage-provider) to help you upload, download and [operate](#operations-available) on your files.     
+
+# Why using Postput?
+
+- You already have an S3 bucket where you store a lot of profile pictures/Avatars. You want to resize and optimize the format of those profile pictures to reduce your bandwith usage and accelerate download speed.
+> [Integrate your bucket with postput](doc/s3) and apply the [resize](#resize) and [webp format](#format) filter on the query.
+
+- You know about serverless solutions like Lambda but these solutions turn out to be too costly.
+> Postput can integrate with a lot of storage providers and will only cost you the price of the server lease. 
+
+- You start a new project and don't want to waste time building your own HTTP server for storing your profile pictures. You're still not sure if you're going to use [s3](doc/s3), [GCS](doc/gcs) or [backblaze](doc/backblaze) as a storage provider.
+
+> When still in development, create a [filesystem storage](doc/filesystem) storage. Later on, when you'll know what storage provider to use, integrate it with postput. You're client side code won't change because all storage providers follow the same API.
+> You can even keep those 2 storages provider active at the same time. You can actually create as many storage providers as you like.
+
+- You're happy with the storage provider that you use. You're not confident about storing your super secret credentials with this (amazing) third party solution but you still want to find a quick solution for resizing and optimizing your files.
+> Create a [proxy](doc/proxy) or [webfolder](doc/webfolder) storage with postput. No credentials are needed for those kind of storage but your files need to be publicly available.
+
+# Table of Contents 
+
+- [Operations Available](#operations-available) 
+- [Supported Storage Provider](#supported-storage-provider) 
+- [Install](#install) 
+- [Run it locally](#run-it-locally) 
+- [How to](#how-to) 
+- [Roadmap](#roadmap)
+- [Credits](#credits)       
  ---    
   
   # Demo
@@ -39,37 +59,26 @@ It can also be used to simplify the way you download/upload files with [various 
  
  # TL;DR
   
-  ### 1. Launch the full stack: 
+### 1. Launch the full stack: 
 ```shell
 wget https://raw.githubusercontent.com/postput/postput/master/docker-compose.yaml -O postput-docker-compose.yaml && \
 docker-compose  -f postput-docker-compose.yaml up
 ```
 
-###  2. Upload any kind of file
-
-```shell
-curl -F 'data=@postput-docker-compose.yaml' http://localhost:2000/my_memory_files?name-override=docker-compose.yaml
-```
-
-###  2. Download the file you've just uploaded
-
-```shell
-curl http://localhost:2000/my_memory_files/docker-compose.yaml
-```
-
-### 3. Upload an image by providing its URL
+### 2. Upload any image by providing its URL
 
 ```shell
 curl -X POST http://localhost:2000/my_memory_files/\?url=https://i2-prod.mirror.co.uk/incoming/article14334083.ece/ALTERNATES/s810/3_Beautiful-girl-with-a-gentle-smile.jpg\&name-override=my-image.jpg
 ```
 
-### 4. Resize, blur, rotate, round and optimize this image on the fly. Operations are applied in the order they appear in the request.
+### 3. Resize, blur, rotate, round and optimize this image on the fly. Operations are applied in the order they appear in the request.
 
 ```shell
-curl http://localhost:2000/my_memory_files/my-image.jpg\?resize=300,300&blur=5&rotate=90&mask=elipse&format=webp
+curl http://localhost:2000/my_memory_files/my-image.jpg\?resize=300,300\&blur=5\&rotate=90\&mask=elipse\&format=webp
 ```
 
-### 5. Create [your custom storage](#supported-storage-provider) at: http://localhost:2002
+### 4. Create [your custom storage](#supported-storage-provider) at: http://localhost:2002
+
 
 # Operations Available
 - [Resize image](#resize)
@@ -89,13 +98,6 @@ Operations are applied one after another. Keep in mind that **order may matters*
             <th>Example</th>
         </tr>
     </thead>
-        <tfoot>
-        <tr>
-            <th>Query parameter</th>
-            <th>Description</th>
-            <th>Example</th>
-        </tr>
-    </tfoot>
     <tbody>
         <tr>
             <td id="resize">resize</td>
