@@ -1,0 +1,51 @@
+[
+  {
+    "model": "Storage",
+    "data": {
+      "name": "my_default_filesystem_files",
+      "isDefault": true,
+      "uuid": "d495d471-3743-40d9-a58a-eb578441ca92",
+      "typeId": 2,
+      "config": {
+        "custom": {}, // If no path is provided, files will be stored in the public/[name of the storage] folder.
+        "allowUpload": true,
+        "urls": ["http://localhost:2000/", "http://caca.com", "https://www.my-other-domain.com"]
+      },
+      "data": {}
+    }
+  },
+  {
+    "model": "Storage",
+    "data": {
+      "name": "my_relative_path_filesystem_files",
+      "isDefault": true,
+      "uuid": "d495d471-3743-40d9-a58a-eb578441ca92",
+      "typeId": 2,
+      "config": {
+        "custom": {
+          "path": "public/default" // Relative path example. Relative begins at the root of the API project.
+        },
+        "allowUpload": true,
+        "urls": ["http://localhost:2000/", "http://caca.com", "https://www.my-other-domain.com"]
+      },
+      "data": {}
+    }
+  },
+  {
+    "model": "Storage",
+    "data": {
+      "name": "my_absolute_path_filesystem_files",
+      "isDefault": true,
+      "uuid": "f6ddef69-31e7-4978-8ce2-673b7ce0d103",
+      "typeId": 2,
+      "config": {
+        "custom": {
+          "path": "/tmp"   // Absolute path example
+        },
+        "allowUpload": true,
+        "urls": ["http://localhost:2000/", "http://caca.com", "https://www.my-other-domain.com"]
+      },
+      "data": {}
+    }
+  }
+]

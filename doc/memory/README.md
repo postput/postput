@@ -1,5 +1,7 @@
 # Memory storage reference
 
+ Allows you to store your file in memory. All files stores will be lost upon restart. It's mostly usefull for testing and demo purpose  
+ 
 ## Integrate a Memory storage with Postput
 
 ### Create it with config files

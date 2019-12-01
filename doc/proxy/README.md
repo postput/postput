@@ -1,4 +1,9 @@
 # Proxy reference
+```diff
+! Upload is not supported by proxy
+```
+
+It is not a storage provider in itself. A Proxy allows you to connect to any file that is addressable through a publicly-available URL.
 
 ## Integrate a Proxy with Postput
 

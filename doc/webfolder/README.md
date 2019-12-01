@@ -1,5 +1,9 @@
 # Webfolder reference
 
+```diff
+! Upload is not supported by webfolder
+```
+
 ## Integrate a Webfolder with Postput
 
 ### Create it with config files
