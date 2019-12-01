@@ -70,7 +70,7 @@ You may want to spend your money on a wiser solution instead.
 Postput simplify object storage by providing a unified API tu upload, download and operate functions on files. It is a free product that you can install on your own computer for development and on production later on when you're ready!
 
  
-## Use cases
+# Use cases
 
 - You already have an S3 bucket where you store a lot of profile pictures/Avatars. You want to resize and optimize the format of those profile pictures to reduce your bandwith usage and accelerate download speed.
 > [Integrate your bucket with postput](doc/s3) and apply the [resize](#resize) and [webp format](#format) filter on the query.
