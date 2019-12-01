@@ -43,6 +43,8 @@ services:
     ports:
       - '2001:3000'
   postput_admin_frontend:
+    environment:
+      CONFIGURATION: production
     image: postput/admin-frontend:dev
     restart: always
     ports:
