@@ -1,0 +1,24 @@
+[
+  /*------------   WEBFOLDER CONFIGURATION    ------------------*/
+  {
+    "model": "Storage",
+    "data": {
+      "name": "my_webfolder_files",
+      "uuid": "c2ba4b53-41fa-483f-9f79-e8bc8a66dd64",
+      "typeId": 7,
+      "config": {
+        "custom": {
+          "method": "GET",
+          "uri": "https://my.host.com",
+          "qs": {
+            "your-query-param": "your value",
+            "another-query-param": "another value"
+          }
+        },
+        "allowUpload": true,
+        "urls": ["http://localhost:2000/", "https://www.my-other-domain.com"]
+      },
+      "data": {}
+    }
+  }
+]

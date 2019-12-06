@@ -1,0 +1,53 @@
+version: '3.3'
+
+services:
+  postput_db:
+    image: postgres:12
+    volumes:
+      - db_data_postput:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postput
+      POSTGRES_USER: postput
+      POSTGRES_DB: postput
+    ports:
+      - '5555:5432'
+  postput_api:
+    image: postput/api:latest
+    restart: always
+    depends_on:
+      - postput_db
+    environment:
+      POSTGRESQL_HOST: postput_db
+      POSTGRESQL_PASSWORD: postput
+      POSTGRESQL_USER: postput
+      POSTGRESQL_DB: postput
+      POSTGRESQL_PORT: 5432
+      SEQUELIZE_FORCE_SYNC: "true"
+    volumes:
+      - ./api/data:/opt/app/data
+    command: ["./wait.sh", "postput_db:5432", "--", "npm", "start"]
+    ports:
+      - '2000:3000'
+  postput_admin_backend:
+    image: postput/admin-backend:latest
+    restart: always
+    depends_on:
+      - postput_db
+    environment:
+      POSTGRESQL_HOST: postput_db
+      POSTGRESQL_PASSWORD: postput
+      POSTGRESQL_USER: postput
+      POSTGRESQL_DB: postput
+      POSTGRESQL_PORT: 5432
+      SEQUELIZE_FORCE_SYNC: "true"
+    command: ["./wait.sh", "postput_db:5432", "--", "npm", "start"]
+    ports:
+      - '2001:3000'
+  postput_admin_frontend:
+    image: postput/admin-frontend:dev
+    restart: always
+    ports:
+      - '2002:4200'
+volumes:
+  db_data_postput: {}

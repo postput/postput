@@ -1,0 +1,24 @@
+[
+  /*------------   FTP STORAGE CONFIGURATION    ------------------*/
+  {
+    "model": "Storage",
+    "data": {
+      "name": "my_sftp_files",
+      "uuid": "25a2418c-77d2-4f02-bcbc-7fc84caf42a6",
+      "typeId": 12,
+      "config": {
+        "custom": {
+          "host": "localhost",
+          "port": 2222,
+          "username": "foo",
+          "root": "upload",
+          "privateKey": "-----BEGIN RSA PRIVATE KEY-----XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-----END RSA PRIVATE KEY-----"
+        }
+      ,
+        "allowUpload": true,
+        "urls": ["http://localhost:2003/", "https://www.my-other-domain.com"]
+      },
+      "data": {}
+    }
+  }
+]

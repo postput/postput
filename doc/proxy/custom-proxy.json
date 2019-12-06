@@ -1,0 +1,19 @@
+[
+  /*------------   PROXY CONFIGURATION    ------------------*/
+  {
+    "model": "Storage",
+    "data": {
+      "name": "my_proxy_files",
+      "uuid": "c2ba4b53-41fa-483f-9f79-e8bc8a66dd14",
+      "typeId": 8,
+      "config": {
+        "custom": {
+          "allowedHosts": ["my.host.com"]
+        },
+        "allowUpload": true,
+        "urls": ["http://localhost:2000/", "https://www.my-other-domain.com"]
+      },
+      "data": {}
+    }
+  }
+]

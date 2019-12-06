@@ -1,0 +1,22 @@
+[
+  /*------------   BACKBLAZE CONFIGURATION    ------------------*/
+  {
+    "model": "Storage",
+    "data": {
+      "name": "my_backblaze_files",
+      "uuid": "c9ba4b53-41fa-483f-9f79-e8bc8a66dd06",
+      "typeId": 11,
+      "config": {
+        "custom": {
+          "applicationKeyId": "qsd5f46qs54fd654q6sdf46q5s",
+          "applicationKey": "fq6sd5f65q4sg654sf6g54sfd65g4s6",
+          "bucketName": "mybucketname",
+          "bucketId": "sqd6f56sqd4f65s4df654sq6fd4"
+        },
+        "allowUpload": true,
+        "urls": ["http://localhost:2000/", "https://www.my-other-domain.com"]
+      },
+      "data": {}
+    }
+  }
+]
