@@ -147,6 +147,16 @@ Operations are applied one after another. Keep in mind that **order may matters*
             <td>Extract a portion of an audio/video file format. You'll have to provide a start time and a duration. Both values are expressed in second.</td>
             <td>?extract=5,10 // this will extract a 10 seconds length portion starting at the 5th second.</td>
         </tr>
+        <tr>
+            <td id="extract">resize-video</td>
+            <td>Resize a video to specified width/height.</td>
+            <td>?resize-video=900x600</td>
+        </tr>
+        <tr>
+            <td id="extract">crop-video</td>
+            <td>Crop a video to a certain portion. Format of value follow the FFMPEG specification: width:height:offset-width:offset-height</td>
+            <td>?crop-video=300:200:50:30 // Will extract a 300x200 rectangle from the video starting a the 50 width offset and 30 height offset.</td>
+        </tr>
     </tbody>
 </table>
 
