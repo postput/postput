@@ -97,16 +97,31 @@ Postput simplify object storage by providing a unified API tu upload, download a
 - [Credits](#credits)       
  ---    
  
+                 const cropLeft = req.query['crop-left'] || 0;
+                 const cropTop = req.query['crop-top'] || 0;
+                 const cropWidth = req.query['crop-width'] || 0;
+                 const cropHeight = req.query['crop-height'] || 0;
+                 
 # Operations Available
-- [Resize image](#resize)
-- [Rotate image](#rotate)
+
+
 - [Blur image](#blur)
+- [Brighten image](#brightness)
+- [Saturate image](#saturation)
+- [Hue shift image](#hue)
+- [Flip-x image](#flip-x)
+- [Flip-y image](#flip-y)
+- [Negate image](#negative)
+- [Resize image](#resize)
+- [Crop image](#crop)
+- [Rotate image](#rotate)
 - [Mask image](#mask)
 - [Format image](#format)
 - [Extract audio/video](#extract)
+- [Resize video](#resize-video)
+- [Crop video](#crop-video)
 
 Operations are applied one after another. Keep in mind that **order may matters** depending on which operations you do!
-
 
 <table>
     <thead>
@@ -118,9 +133,49 @@ Operations are applied one after another. Keep in mind that **order may matters*
     </thead>
     <tbody>
         <tr>
+            <td id="blur">blur</td>
+            <td> Perform a Gaussian blur on the image</td>
+            <td>?blur=5</td>
+        </tr>
+        <tr>
+            <td id="brightness">Brightness</td>
+            <td> Brighten the image by specified value. Must be between 0 and 1.</td>
+            <td>?brightness=0.6</td>
+        </tr>
+        <tr>
+            <td id="saturation">Saturation</td>
+            <td> Apply a saturation on the image. Value must be between 0 and 1.</td>
+            <td>?saturation=0.6</td>
+        </tr>
+        <tr>
+            <td id="hue">Hue shift</td>
+            <td> Perform a hue shift on the image. Value must be an angle between 0 and 360</td>
+            <td>?hue=180</td>
+        </tr>
+        <tr>
+            <td id="flip-x">Flip-x</td>
+            <td> Flip the image around the X axis.</td>
+            <td>?flip-x=true</td>
+        </tr>
+        <tr>
+            <td id="flip-y">Flip-y</td>
+            <td> Flip the image around the Y axis.</td>
+            <td>?flip-y=true</td>
+        </tr>
+        <tr>
+            <td id="negative">Negate</td>
+            <td> Produce the negative of the image.</td>
+            <td>?negate=true</td>
+        </tr>
+        <tr>
             <td id="resize">resize</td>
             <td>Resize the image accoring to specified value</td>
             <td>?resize=200 <br/>?resize=10,20</td>
+        </tr>
+        <tr>
+            <td id="crop">crop</td>
+            <td>Take a portion of an image. Must be used in combination with `crop-left`(optional), `crop-top`(optional), `crop-width`(required) and `crop-height`(required). Extracted area must strictly be within the original image.</td>
+            <td>?crop=true&crop-left=30&crop-top=30&crop-width=200&crop-height=200<br/>?crop=true&crop-width=200&crop-height=200</td>
         </tr>
         <tr>
             <td id="rotate">Rotate</td>
@@ -128,14 +183,9 @@ Operations are applied one after another. Keep in mind that **order may matters*
             <td>?rotate=90</td>
         </tr>
         <tr>
-            <td id="blur">blur</td>
-            <td> Perform a Gaussian blur on the image</td>
-            <td>?blur=5</td>
-        </tr>
-        <tr>
             <td id="mask">mask</td>
-            <td>Apply a mask on the image. Currently, only elipse mask is supported.</td>
-            <td>?mask=elipse</td>
+            <td>Apply a mask on the image. Currently, only `elipse` and `corner` mask are supported.</td>
+            <td>?mask=elipse <br />?mask=corner&corner-radius=10</td>
         </tr>
         <tr>
             <td id="format">format</td>
@@ -143,17 +193,17 @@ Operations are applied one after another. Keep in mind that **order may matters*
             <td>?format=webp</td>
         </tr>
         <tr>
-            <td id="extract">extract</td>
+            <td id="extract">Extract audio/video</td>
             <td>Extract a portion of an audio/video file format. You'll have to provide a start time and a duration. Both values are expressed in second.</td>
             <td>?extract=5,10 // this will extract a 10 seconds length portion starting at the 5th second.</td>
         </tr>
         <tr>
-            <td id="extract">resize-video</td>
+            <td id="resize-video">resize-video</td>
             <td>Resize a video to specified width/height.</td>
             <td>?resize-video=900x600</td>
         </tr>
         <tr>
-            <td id="extract">crop-video</td>
+            <td id="crop-video">crop-video</td>
             <td>Crop a video to a certain portion. Format of value follow the FFMPEG specification: width:height:offset-width:offset-height</td>
             <td>?crop-video=300:200:50:30 // Will extract a 300x200 rectangle from the video starting a the 50 width offset and 30 height offset.</td>
         </tr>
