@@ -3,7 +3,7 @@
 ## Integrate a Minio bucket with Postput
 
 ### Create it with config files
-Copy/paste the [`custom-minio.json` ](custom-scaleway.json) config file into the [`data/storage/custom`](https://github.com/postput/api/tree/master/data/storage/custom) directory, then change secret values accordingly.
+Copy/paste the [`custom-minio.json` ](custom-minio.json) config file into the [`data/storage/custom`](https://github.com/postput/api/tree/master/data/storage/custom) directory, then change secret values accordingly.
 
 ### Create it with the admin
 
