@@ -96,11 +96,6 @@ Postput simplify object storage by providing a unified API tu upload, download a
 - [Roadmap](#roadmap)
 - [Credits](#credits)       
  ---    
- 
-                 const cropLeft = req.query['crop-left'] || 0;
-                 const cropTop = req.query['crop-top'] || 0;
-                 const cropWidth = req.query['crop-width'] || 0;
-                 const cropHeight = req.query['crop-height'] || 0;
                  
 # Operations Available
 
@@ -138,32 +133,32 @@ Operations are applied one after another. Keep in mind that **order may matters*
             <td>?blur=5</td>
         </tr>
         <tr>
-            <td id="brightness">Brightness</td>
+            <td id="brightness">brightness</td>
             <td> Brighten the image by specified value. Must be between 0 and 1.</td>
             <td>?brightness=0.6</td>
         </tr>
         <tr>
-            <td id="saturation">Saturation</td>
+            <td id="saturation">saturation</td>
             <td> Apply a saturation on the image. Value must be between 0 and 1.</td>
             <td>?saturation=0.6</td>
         </tr>
         <tr>
-            <td id="hue">Hue shift</td>
+            <td id="hue">hue</td>
             <td> Perform a hue shift on the image. Value must be an angle between 0 and 360</td>
             <td>?hue=180</td>
         </tr>
         <tr>
-            <td id="flip-x">Flip-x</td>
+            <td id="flip-x">flip-x</td>
             <td> Flip the image around the X axis.</td>
             <td>?flip-x=true</td>
         </tr>
         <tr>
-            <td id="flip-y">Flip-y</td>
+            <td id="flip-y">flip-y</td>
             <td> Flip the image around the Y axis.</td>
             <td>?flip-y=true</td>
         </tr>
         <tr>
-            <td id="negative">Negate</td>
+            <td id="negative">negate</td>
             <td> Produce the negative of the image.</td>
             <td>?negate=true</td>
         </tr>
@@ -174,9 +169,9 @@ Operations are applied one after another. Keep in mind that **order may matters*
         </tr>
         <tr>
             <td id="crop">crop</td>
-            <td>Take a portion of an image. Must be used in combination with `crop-left`(optional), `crop-top`(optional), `crop-width`(required) and `crop-height`(required). Extracted area must strictly be within the original image.</td>
+            <td>Take a portion of an image. Must be used in combination with crop-left(optional), crop-top(optional), crop-width(required) and crop-height(required). Extracted area must strictly be within the original image.</td>
             <td>?crop=true&crop-left=30&crop-top=30&crop-width=200&crop-height=200<br/>?crop=true&crop-width=200&crop-height=200</td>
-        </tr>
+        </tr>A
         <tr>
             <td id="rotate">Rotate</td>
             <td>Rotate the image to the degree specified</td>
