@@ -44,12 +44,9 @@ curl -X POST http://localhost:2000/my_memory_files/\?url=https://i2-prod.mirror.
 ### 3. Resize, blur, rotate, round and optimize this image on the fly. Operations are applied in the order they appear in the request.
 
 Copy/paste this URL in your favourite webbrowser:
+http://localhost:2000/my_memory_files/my-image.jpg?resize=300,300&blur=5&rotate=90&mask=elipse&format=webp
 
-```shell 
-http://localhost:2000/my_memory_files/my-image.jpg?resize=300,300&blur=5&rotate=90&mask=elipse&format=webp 
-```
-
-### 4. Create [your custom storage](#supported-storage-provider) at: http://localhost:2002
+### 4. Create [your custom storage](#supported-storage-provider) and your webhooks at: http://localhost:2002
 
 # Why this project?
 
@@ -79,10 +76,13 @@ Postput simplify object storage by providing a unified API tu upload, download a
 - You know about serverless solutions like Lambda but these solutions turn out to be too costly.
 > Postput can integrate with a lot of storage providers and will only cost you the price of the server lease. 
 
+- You have a lot amount a data in a FTP server that you suddenly have to expose via an API.
+> Postput can integrate with an [FTP server](doc/ftp) and serve its files smoothly.
+>
 - You start a new project and don't want to waste time building your own HTTP server for storing your profile pictures. You're still not sure if you're going to use [s3](doc/s3), [GCS](doc/gcs), [backblaze](doc/backblaze) or your own [filesystem](doc/filesystem) as a storage provider.
 
 > When still in development, create a [filesystem storage](doc/filesystem) storage. Later on, when you'll know what storage provider to use, integrate it with postput. Your code won't change because all storage providers follow the same API.
-> You can even keep those 2 storage providers active at the same time. You can actually create as many storage providers as you like with Postput.
+> You can keep those 2 storage providers active at the same time. You can actually create as many storage providers as you like with Postput.
 
 - You're happy with the storage provider that you use. You're not confident about storing your super secret credentials with this (amazing) third party solution but you still want to find a quick solution for resizing and optimizing your files.
 > Create a [proxy](doc/proxy) or [webfolder](doc/webfolder) storage with postput. No credentials are needed for those kind of storage but your files need to be publicly available.
@@ -154,6 +154,7 @@ Operations are applied one after another. Keep in mind that **order may matters*
  ### See [storage reference](https://github.com/postput/api/blob/a56e5a92c2addd7a092c5f2c743ab72ff17697c5/data/storage/custom/custom.json.dist)
  
 - [Amazon S3](doc/s3)
+- [Minio](doc/minio)
 - [Google cloud storage (GCS)](doc/gcs)   
 - [Spaces (DigitalOcean)](doc/spaces)
 - [Openstack](/doc/openstack) 
@@ -170,7 +171,7 @@ Operations are applied one after another. Keep in mind that **order may matters*
 # Install
 Before running and using Postput, you'll have to tell him what kind of storage to use. It is very easy to do so.
 
-Postput is designed to sync every json file it finds in the [data/storage](https://github.com/postput/api/tree/master/data/storage) directory with the database every time it starts.
+Postput is designed to sync every json file it finds in the [data/storage/custom](https://github.com/postput/api/tree/master/data/storage/custom) directory with the database every time it starts.
 
 This is the preferable method if you plan to use postput on production because it ensure a consistent storage info upon restart even if you decide to modify/reset your postgresql instance. 
 
@@ -390,10 +391,8 @@ By end of November 2019:
 
 
 By end of December 2019:
-*   Implement Webhooks capabilities
 *   Increase test coverage
 *   Face detection ( [face-api?]([https://github.com/justadudewhohacks/face-api.js/](https://github.com/justadudewhohacks/face-api.js/))  [opencv?](#[https://github.com/peterbraden/node-opencv](https://github.com/peterbraden/node-opencv)))
-
 
 
 # Credits

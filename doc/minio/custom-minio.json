@@ -1,0 +1,24 @@
+[
+  /*------------   MINIO CONFIGURATION    ------------------*/
+  {
+    "model": "Storage",
+    "data": {
+      "name": "my_minio_files",
+      "uuid": "fecde6b0-3256-4625-aa9c-00d136c77905",
+      "typeId": 10,
+      "config": {
+        "custom": {
+          "endpoint": "http://172.17.0.2:9000",
+          "bucket": "testpostput",
+          "accessKeyId": "xxxxxxxxxxxxxxxxxxxxxxx",
+          "secretAccessKey": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+          "s3ForcePathStyle": true,
+          "signatureVersion": "v4"
+        },
+        "allowUpload": true,
+        "urls": ["http://localhost:2000/", "https://www.my-other-domain.com"]
+      },
+      "data": {}
+    }
+  }
+]
