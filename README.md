@@ -242,24 +242,22 @@ Operations are applied one after another. Keep in mind that **order may matters*
 # Install
 Before running and using Postput, you'll have to tell him what kind of storage to use. It is very easy to do so.
 
-Postput is designed to sync every json file it finds in the [data/storage/custom](https://github.com/postput/api/tree/master/data/storage/custom) directory with the database every time it starts.
+Postput is designed to sync every json file it finds in the [data/storage/custom](https://github.com/postput/api/tree/master/data/storage/custom) directory with the in-memory sqlite database every time it starts.
 
-This is the preferable method if you plan to use postput on production because it ensure a consistent storage info upon restart even if you decide to modify/reset your postgresql instance. 
-
-You'll have to create a json file that looks like [this one](https://github.com/postput/api/blob/master/data/storage/custom/custom.json.dist) in the [data/storage](https://github.com/postput/api/tree/master/data/storage/custom) directory
+You'll have to create a json file that looks like [this one](https://github.com/postput/api/blob/master/data/storage/custom/custom.json.dist) in the [data/storage/custom](https://github.com/postput/api/tree/master/data/storage/custom) directory
 
 
 ## Locally
 
 ### Clone this git repo with its dependencies.
 ```shell
-git clone --recursive git@github.com:postput/postput.git
-git clone --recursive https://github.com/postput/postput.git
+git clone --recursive git@github.com:postput/api.git
+git clone --recursive https://github.com/postput/api.git
 ```
 
-### Start the whole stack : API + backend + frontend 
+### Start the service
 ```shell
-cd postput
+cd api
 docker-compose up
 ```
 
@@ -330,31 +328,6 @@ The API can be easily configured using environment variables and storage specifi
             <td>Specify if upload is allowed to every storages. This config can be overriden by storage specify configuration.</td>
             <td>["http://localhost:2000/", "https://www.my-other-url.com"]</td>
         </tr>
-        <tr>
-            <td>POSTGRESQL_HOST</td>
-            <td>Postgresql host</td>
-            <td>localhost</td>
-        </tr>
-        <tr>
-            <td>POSTGRESQL_PORT</td>
-            <td>Postgresql port</td>
-            <td>5432</td>
-        </tr>
-        <tr>
-            <td>POSTGRESQL_USERNAME</td>
-            <td>Postgresql username</td>
-            <td>postput</td>
-        </tr>
-        <tr>
-            <td>POSTGRESQL_PASSWORD</td>
-            <td>Postgresql password</td>
-            <td>postput</td>
-        </tr>
-        <tr>
-            <td>POSTGRESQL_DATABASE</td>
-            <td>Postgresql database</td>
-            <td>postput</td>
-        </tr>
                 <tr>
             <td>SEQUELIZE_FORCE_SYNC</td>
             <td> <a href="https://sequelize.readthedocs.io/en/latest/api/sequelize/#sync">Force deletion of table if they exists</a> before creating them. You want to disable that on production.</td>
@@ -404,55 +377,21 @@ The API can be easily configured using environment variables and storage specifi
 
 # Debug
 
-You may want to run each service independently in your computer to be able to see what's happening under the hood.
-Good news: each microservice can be started independently.
+You may want to run the API service in your computer to be able to see what's happening under the hood.
 
 ### Preriquisites:
 * [node.js](#[https://nodejs.org/en/](https://nodejs.org/en/)) >= 10
-*  Postgresql database up and running. You can spawn one very easily thanks to the docker-compose file provided at the root of this repository.
 
-```shell
-docker-compose up postput_db
-```
-
-## Launch the API and the admin backend
-Once started, you can start the API and the admin-backend. 
-You can customize database connexion parameters with environment variables.
+## Launch the API
+Start the API.
 
 ### Start the API:
 
 ```shell
 cd api
 npm i
-export POSTGRESQL_PORT=5555
-export LISTEN_PORT=1999
 npm start
 ```
-
-### Start the admin-backend
-
-```shell
-cd admin-backend
-npm i
-export POSTGRESQL_PORT=5555
-export LISTEN_PORT=1998
-npm start
-```
-
-## Launch the admin frontend
-
-Once the admin backend is started, you can start the admin frontend that allows you to create, read, update and delete storages (CRUD). The frontend is designed to communicate with the backend so you must configure it so that it will hit the admin-backend on the port it is listening : [1998](#start-the-admin-backend) in this case.
-
-admin-frontend
-```shell
-cd admin-frontend
-npm i
-ng serve -c debug
-```
-The debug configuration is a profile that will make the frontend hit the port 1998 so it will just work out of the box.
-Unfortunately, angular does not play well with environment variable so if you want/have to modify this port, you'll have to modify the debug profile or create another one. 
-The file to modify is located at : [https://raw.githubusercontent.com/postput/admin-frontend/master/src/environments/environment.prod.ts](https://raw.githubusercontent.com/postput/admin-frontend/master/src/environments/environment.debug.ts)
-
 
 # Roadmap
 
