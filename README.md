@@ -29,10 +29,9 @@ It abstracts the complexity of [storage providers](#supported-storage-provider) 
   
 # TL;DR
   
-### 1. Launch the full stack: 
+### 1. Launch the API: 
 ```shell
-wget https://raw.githubusercontent.com/postput/postput/master/docker-compose.yaml -O postput-docker-compose.yaml && \
-docker-compose  -f postput-docker-compose.yaml up
+docker run -p 2000:3000 postput/api:latest
 ```
 
 ### 2. Upload any image by providing its URL
@@ -45,8 +44,6 @@ curl -X POST http://localhost:2000/my_memory_files/\?url=https://i2-prod.mirror.
 
 Copy/paste this URL in your favourite webbrowser:
 http://localhost:2000/my_memory_files/my-image.jpg?resize=300,300&blur=5&rotate=90&mask=elipse&format=webp
-
-### 4. Create [your custom storage](#supported-storage-provider) and your webhooks at: http://localhost:2002
 
 # Why this project?
 
