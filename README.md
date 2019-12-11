@@ -104,6 +104,9 @@ Postput simplify object storage by providing a unified API tu upload, download a
 - [Brighten image](#brightness)
 - [Saturate image](#saturation)
 - [Hue shift image](#hue)
+- [Greyscale](#greyscale)
+- [Tint](#tint)
+- [ColorSpace](#colorspace)
 - [Flip-x image](#flip-x)
 - [Flip-y image](#flip-y)
 - [Negate image](#negative)
@@ -146,6 +149,21 @@ Operations are applied one after another. Keep in mind that **order may matters*
             <td id="hue">hue</td>
             <td> Perform a hue shift on the image. Value must be an angle between 0 and 360</td>
             <td>?hue=180</td>
+        </tr>
+        <tr>
+            <td id="greyscale">greyscale</td>
+            <td> Transform the image into a white/black</td>
+            <td>?greyscale=true</td>
+        </tr>
+        <tr>
+            <td id="tint">tint</td>
+            <td> Apply an rgba color mask on top of the image.</td>
+            <td>?tint=210,205,15,0.2</td>
+        </tr>
+        <tr>
+            <td id="colorspace">colorspace</td>
+            <td> Set the output colourspace. Possible values: srgb, rgb, cmyk, lab, b-w ...</td>
+            <td>?colorspace=cmyk</td>
         </tr>
         <tr>
             <td id="flip-x">flip-x</td>
@@ -254,7 +272,7 @@ By default, a memory storage and a filesystem storage are created for you.
 
 ### With docker
 You can create a docker image based on the [api image]([https://hub.docker.com/repository/docker/postput/api](https://hub.docker.com/repository/docker/postput/api)) (Image built with [this docker file]([https://github.com/postput/api/blob/master/Dockerfile](https://github.com/postput/api/blob/master/Dockerfile)))
-Don't forget to include your own storage info and to delet those you don't want anymore:
+Don't forget to include your own storage info and to delete those you don't want anymore:
 ```docker
 FROM postput/api
 COPY my-storage.json ./data/storage/custom
