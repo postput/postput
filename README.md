@@ -208,7 +208,7 @@ Operations are applied one after another. Keep in mind that **order may matters*
 # Supported Storage Provider    
  ### See [storage reference](https://github.com/postput/api/blob/a56e5a92c2addd7a092c5f2c743ab72ff17697c5/data/storage/custom/custom.json.dist)
  
-- [Amazon S3](doc/s3)
+- [Amazon S3 + All compliant storages](doc/s3)
 - [Minio](doc/minio)
 - [Google cloud storage (GCS)](doc/gcs)   
 - [Spaces (DigitalOcean)](doc/spaces)
@@ -216,12 +216,13 @@ Operations are applied one after another. Keep in mind that **order may matters*
 - [Azure](doc/azure)
 - [Backblaze](doc/backblaze)
 - [Scaleway](doc/scaleway)
+- [IBM](doc/ibm)
+- [Alibaba](doc/alibaba)
 - [FTP](doc/ftp)
 - [In memory](doc/memory)
 - [Filesystem](doc/filesystem)
 - [Webfolder](doc/webfolder)
 - [Proxy](doc/proxy)
-- [All s3 compliant storages](#all-s3-compliant-storages)
   
 # Install
 Before running and using Postput, you'll have to tell him what kind of storage to use. It is very easy to do so.

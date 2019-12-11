@@ -1,0 +1,23 @@
+[
+  /*------------   MINIO CONFIGURATION    ------------------*/
+  {
+    "model": "Storage",
+    "data": {
+      "name": "my_ibm_files",
+      "uuid": "9504906b-b6c0-4e32-a3bb-77514e35219f",
+      "typeId": 9,
+      "config": {
+        "custom": {
+          "endpoint": "https://s3.eu-de.cloud-object-storage.appdomain.cloud",
+          "apiKeyId": "piqsdjfùpoijqs*ùdfpokqs*$podfkùpqoskdfùopkqsdf",
+          "ibmAuthEndpoint": "https://iam.cloud.ibm.com/identity/token",
+          "serviceInstanceId": "crn:v1:bluemix:public:cloud-object-storage:global:a/qùspdofjùqspodjfùosqjkdfùmlksqdmùlfk:sdfsdf-sdf-qsdf-aa0e-qsdfsqdfqsdf::",
+          "bucket": "testpostput"
+        },
+        "allowUpload": true,
+        "urls": ["http://localhost:2003/", "https://www.my-other-domain.com"]
+      },
+      "data": {}
+    }
+  }
+]

@@ -1,0 +1,22 @@
+[
+  /*------------   MINIO CONFIGURATION    ------------------*/
+  {
+    "model": "Storage",
+    "data": {
+      "name": "my_alibaba_files",
+      "uuid": "60f3799e-0eb5-4785-b566-99bab123ba1d",
+      "typeId": 10,
+      "config": {
+        "custom": {
+          "region": "oss-eu-central-1",
+          "accessKeyId": "mqsodfjnumqsojdfnmqsdnfm",
+          "accessKeySecret": "dsfmkjnqsmdjfnmqlskdnfmkljqnsdflkj",
+          "bucket": "testpostput"
+        },
+        "allowUpload": true,
+        "urls": ["http://localhost:2003/", "https://www.my-other-domain.com"]
+      },
+      "data": {}
+    }
+  }
+]
