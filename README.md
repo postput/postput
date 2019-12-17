@@ -90,6 +90,7 @@ Postput simplify object storage by providing a unified API tu upload, download a
 - [Supported Storage Provider](#supported-storage-provider) 
 - [Install](#install) 
 - [Configuration](#configuration)
+- [Add your own provider](#add-your*own-provider)
 - [Roadmap](#roadmap)
 - [Credits](#credits)       
  ---    
@@ -221,7 +222,7 @@ Operations are applied one after another. Keep in mind that **order may matters*
 </table>
 
 # Supported Storage Provider    
- ### See [storage reference](https://github.com/postput/api/blob/a56e5a92c2addd7a092c5f2c743ab72ff17697c5/data/storage/custom/custom.json.dist)
+ ### See [provider reference](https://github.com/postput/api/blob/master/data/provider/custom/custom.json.dist
  
 - [Amazon S3 + All compliant storages](doc/s3)
 - [Minio](doc/minio)
@@ -242,9 +243,9 @@ Operations are applied one after another. Keep in mind that **order may matters*
 # Install
 Before running and using Postput, you'll have to tell him what kind of storage to use. It is very easy to do so.
 
-Postput is designed to sync every json file it finds in the [data/storage/custom](https://github.com/postput/api/tree/master/data/storage/custom) directory with the in-memory sqlite database every time it starts.
+Postput is designed to sync every json file it finds in the [data/provider/custom](https://github.com/postput/api/blob/master/data/provider/custom) directory with the in-memory sqlite database every time it starts.
 
-You'll have to create a json file that looks like [this one](https://github.com/postput/api/blob/master/data/storage/custom/custom.json.dist) in the [data/storage/custom](https://github.com/postput/api/tree/master/data/storage/custom) directory
+You'll have to create a json file that looks like [this one](https://github.com/postput/api/blob/master/data/provider/custom/custom.json.dist) in the [data/provider/custom](https://github.com/postput/api/blob/master/data/provider/custom) directory
 
 
 ## Locally
@@ -270,8 +271,8 @@ You can create a docker image based on the [api image]([https://hub.docker.com/r
 Don't forget to include your own storage info and to delete those you don't want anymore:
 ```docker
 FROM postput/api
-COPY my-storage.json ./data/storage/custom
-RUN rm ./data/storage/default.json
+COPY my-storage.json ./data/provider/custom
+RUN rm ./data/provider/default.json
 ```
 
 ### With Kubernetes: Helm
@@ -374,6 +375,12 @@ The API can be easily configured using environment variables and storage specifi
         </tr>
     </tbody>
 </table>
+
+# Add your own provider
+
+You can add your own provider very easily. All you have to do is to add your own specific Provider implementation by creating a class [here](https://github.com/postput/api/tree/master/src/provider/implementation). The system is designed to load every file in that directory and to consider each of them as Provider implmentation.
+Your class will have to implement the [Provider interface](https://github.com/postput/api/blob/master/src/provider/interface.ts). If you don't know what to do, just get inspired by other implementations.
+
 
 # Debug
 
