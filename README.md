@@ -90,7 +90,7 @@ Postput simplify object storage by providing a unified API tu upload, download a
 - [Supported Storage Provider](#supported-storage-provider) 
 - [Install](#install) 
 - [Configuration](#configuration)
-- [Add your own provider](#add-your*own-provider)
+- [Add your own provider](#add-your-own-provider)
 - [Roadmap](#roadmap)
 - [Credits](#credits)       
  ---    
