@@ -116,6 +116,7 @@ Postput simplify object storage by providing a unified API tu upload, download a
 - [Extract audio/video](#extract)
 - [Resize video](#resize-video)
 - [Crop video](#crop-video)
+- [Face detection](#face-detection)
 
 Operations are applied one after another. Keep in mind that **order may matters** depending on which operations you do!
 
@@ -218,11 +219,18 @@ Operations are applied one after another. Keep in mind that **order may matters*
             <td>Crop a video to a certain portion. Format of value follow the FFMPEG specification: width:height:offset-width:offset-height</td>
             <td>?crop-video=300:200:50:30 // Will extract a 300x200 rectangle from the video starting a the 50 width offset and 30 height offset.</td>
         </tr>
+        <tr>
+            <td id="face-detection">face</td>
+            <td>Crop the image to fit the most relevant face. Use it with 'face-pad' to zoom out off the face.</td>
+            <td>?face=true&face-pad=1.5</td>
+        </tr>
     </tbody>
+    
+    
 </table>
 
 # Supported Storage Provider    
- ### See [provider reference](https://github.com/postput/api/blob/master/data/provider/custom/custom.json.dist
+ ### See [provider reference](https://github.com/postput/api/blob/master/data/provider/custom/custom.json.dist)
  
 - [Amazon S3 + All compliant storages](doc/s3)
 - [Minio](doc/minio)
@@ -241,7 +249,7 @@ Operations are applied one after another. Keep in mind that **order may matters*
 - [Proxy](doc/proxy)
   
 # Install
-Before running and using Postput, you'll have to tell him what kind of storage to use. It is very easy to do so.
+Before running and using Postput, you'll have to tell it what provider(s) to use. It is very easy to do so.
 
 Postput is designed to sync every json file it finds in the [data/provider/custom](https://github.com/postput/api/blob/master/data/provider/custom) directory with the in-memory sqlite database every time it starts.
 
@@ -262,16 +270,16 @@ cd api
 docker-compose up
 ```
 
-By default, a memory storage and a filesystem storage are created for you.
+By default, a memory provider and a filesystem provider are created for you.
 
 ## On production
 
 ### With docker
 You can create a docker image based on the [api image]([https://hub.docker.com/repository/docker/postput/api](https://hub.docker.com/repository/docker/postput/api)) (Image built with [this docker file]([https://github.com/postput/api/blob/master/Dockerfile](https://github.com/postput/api/blob/master/Dockerfile)))
-Don't forget to include your own storage info and to delete those you don't want anymore:
+Don't forget to include your own provider info and to delete those you don't want anymore:
 ```docker
 FROM postput/api
-COPY my-storage.json ./data/provider/custom
+COPY my-provider.json ./data/provider/custom
 RUN rm ./data/provider/default.json
 ```
 
@@ -289,7 +297,7 @@ helm install . --name=my-release
 
 # Configuration
 
-The API can be easily configured using environment variables and storage specific config.
+The API can be easily configured using environment variables and provider specific config.
 
 ### Global configuration
 
@@ -321,12 +329,12 @@ The API can be easily configured using environment variables and storage specifi
         </tr>
         <tr>
             <td>URLS</td>
-            <td> List of urls that will be appened at the end of each storage configuration.</td>
+            <td> List of urls that will be appended at the end of each provider configuration.</td>
             <td>["http://localhost:2000/", "https://www.my-other-url.com"]</td>
         </tr>
         <tr>
             <td>ALLOW_UPLOAD</td>
-            <td>Specify if upload is allowed to every storages. This config can be overriden by storage specify configuration.</td>
+            <td>Specify if upload is allowed to every providers. This config can be overridden by provider specify configuration.</td>
             <td>["http://localhost:2000/", "https://www.my-other-url.com"]</td>
         </tr>
                 <tr>
@@ -360,17 +368,17 @@ The API can be easily configured using environment variables and storage specifi
     <tbody>
         <tr>
             <td>allowUpload</td>
-            <td>Specify if upload is allowed for that storage. It takes precedence over the global configuration</td>
+            <td>Specify if upload is allowed for that provider. It takes precedence over the global configuration</td>
             <td>true</td>
         </tr>
         <tr>
             <td>urls</td>
-            <td>Storage specific urls.</td>
+            <td>Provider specific urls.</td>
             <td>["http://localhost:3000/"]</td>
         </tr>
         <tr>
             <td>custom</td>
-            <td>Storage specific config, see <a href="#supported-storage-provider ">Supported Storage Provider </a></td>
+            <td>Provider specific config, see <a href="#supported-storage-provider ">Supported Storage Provider </a></td>
             <td>{}</td>
         </tr>
     </tbody>
