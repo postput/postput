@@ -387,9 +387,16 @@ The API can be easily configured using environment variables and provider specif
 # Add your own provider
 
 You can add your own provider very easily. 
-All you have to do is to add your own specific Provider implementation by creating a class [here](https://github.com/postput/api/tree/master/src/provider/implementation). 
+All you have to do is to add your own specific [Provider](https://github.com/postput/api/blob/master/src/provider/interface.ts) implementation by creating a class [here](https://github.com/postput/api/tree/master/src/provider/implementation). 
 The system is designed to load every file in that directory and to consider each of them as Provider implementation.
 Your class will have to implement the [Provider interface](https://github.com/postput/api/blob/master/src/provider/interface.ts). If you don't know what to do, just get inspired by other implementations like [this one](https://github.com/postput/api/blob/master/src/provider/implementation/s3.ts), [this one](https://github.com/postput/api/blob/master/src/provider/implementation/filesystem.ts) or [this one](https://github.com/postput/api/blob/master/src/provider/implementation/ftp.ts)
+
+# Add your own operation
+
+You can add your own operation very easily. 
+All you have to do is to add your own specific [Operation](https://github.com/postput/api/blob/master/src/operation/interface.ts) implementation by creating a class [here](https://github.com/postput/api/tree/master/src/operation/implementation). 
+The system is designed to load every file in that directory and to consider each of them as Operation implementation.
+Your class will have to implement the [Operation interface](https://github.com/postput/api/blob/master/src/operation/interface.ts). If you don't know what to do, just get inspired by other implementations like [this one](https://github.com/postput/api/blob/master/src/operation/implementation/resize.ts), [this one](https://github.com/postput/api/blob/master/src/operation/implementation/crop-video.ts) or [this one](https://github.com/postput/api/blob/master/src/operation/implementation/format.ts)
 
 
 # Debug
